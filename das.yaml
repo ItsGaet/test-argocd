@@ -1,0 +1,22 @@
+apiVersion: apps/v1
+kind: DaemonSet
+metadata:
+  name: daemonset1
+  labels:
+    app: demo-daemonset
+spec:
+  selector:
+    matchLabels:
+      system: daemonset1
+  updateStrategy:
+    type: OnDelete
+  template:
+    metadata:
+      labels:
+        system: daemonset1
+    spec:
+      containers:
+      - name: nginx
+        image: r.deso.tech/dockerhub/library/nginx
+        ports:
+        - containerPort: 80
